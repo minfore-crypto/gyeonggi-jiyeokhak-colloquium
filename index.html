@@ -1,0 +1,695 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>경기지역학 콜로키움 03 기록</title>
+<style>
+:root{
+  --bg:#f4f6f9; --surface:#ffffff; --surface2:#fafbfd;
+  --ink:#151922; --ink2:#39414f; --muted:#6b7585;
+  --line:#e2e6ee; --line2:#eef1f6;
+  --navy:#1b3a5e; --navy2:#2d5786; --navyTint:#eaf0f7;
+  --amber:#a2570b; --amberTint:#fdf3e3;
+  --teal:#0f6b64; --tealTint:#e6f4f2;
+  --plum:#6b2d63; --plumTint:#f6ebf4;
+  --star:#b8860b;
+  --shadow:0 1px 2px rgba(20,30,50,.05), 0 8px 24px rgba(20,30,50,.06);
+  --radius:12px;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1216; --surface:#171b21; --surface2:#1c2129;
+    --ink:#e9ecf1; --ink2:#c3cad6; --muted:#8d97a6;
+    --line:#282e38; --line2:#222831;
+    --navy:#8fb6e0; --navy2:#a7c8ec; --navyTint:#182430;
+    --amber:#e6a55c; --amberTint:#2a2115;
+    --teal:#5fc4b8; --tealTint:#122423;
+    --plum:#cf9ac6; --plumTint:#241a23;
+    --star:#e0b850;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f1216; --surface:#171b21; --surface2:#1c2129;
+  --ink:#e9ecf1; --ink2:#c3cad6; --muted:#8d97a6;
+  --line:#282e38; --line2:#222831;
+  --navy:#8fb6e0; --navy2:#a7c8ec; --navyTint:#182430;
+  --amber:#e6a55c; --amberTint:#2a2115;
+  --teal:#5fc4b8; --tealTint:#122423;
+  --plum:#cf9ac6; --plumTint:#241a23;
+  --star:#e0b850;
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:'Pretendard','Pretendard Variable',-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif;
+  font-size:15px; line-height:1.72; letter-spacing:-.01em;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+
+/* ---------- top bar ---------- */
+.topbar{
+  position:sticky;top:0;z-index:50;
+  background:color-mix(in srgb,var(--surface) 88%, transparent);
+  backdrop-filter:saturate(1.6) blur(12px);
+  -webkit-backdrop-filter:saturate(1.6) blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.topbar-in{max-width:1100px;margin:0 auto;padding:0 20px;display:flex;align-items:center;gap:14px;height:56px}
+.brand{font-weight:800;font-size:13.5px;letter-spacing:-.02em;color:var(--navy);white-space:nowrap}
+.brand span{color:var(--muted);font-weight:600}
+.navscroll{flex:1;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+.navscroll::-webkit-scrollbar{display:none}
+nav{display:flex;gap:2px;white-space:nowrap}
+nav a{
+  color:var(--muted);text-decoration:none;font-size:12.5px;font-weight:600;
+  padding:6px 10px;border-radius:7px;transition:.15s
+}
+nav a:hover{color:var(--ink);background:var(--line2)}
+nav a.on{color:var(--navy);background:var(--navyTint)}
+.tools{display:flex;gap:6px;flex-shrink:0}
+.tbtn{
+  font:inherit;font-size:12px;font-weight:700;cursor:pointer;
+  border:1px solid var(--line);background:var(--surface);color:var(--ink2);
+  padding:6px 11px;border-radius:7px;transition:.15s;white-space:nowrap
+}
+.tbtn:hover{border-color:var(--navy);color:var(--navy)}
+.tbtn.active{background:var(--star);border-color:var(--star);color:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tbtn.active{color:#1a1500}}
+:root[data-theme="dark"] .tbtn.active{color:#1a1500}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;background:var(--navy);width:0}
+
+/* ---------- hero ---------- */
+header.hero{padding:44px 0 30px;border-bottom:1px solid var(--line)}
+.eyebrow{font-size:11.5px;font-weight:800;letter-spacing:.1em;color:var(--amber);text-transform:uppercase;margin-bottom:12px}
+h1{font-size:clamp(24px,4.4vw,36px);line-height:1.28;letter-spacing:-.035em;font-weight:800;margin-bottom:10px}
+.sub{font-size:15px;color:var(--muted);font-weight:500;margin-bottom:22px}
+.meta{display:flex;flex-wrap:wrap;gap:8px}
+.chip{
+  display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;
+  background:var(--surface);border:1px solid var(--line);color:var(--ink2);
+  padding:6px 12px;border-radius:20px
+}
+.chip b{color:var(--muted);font-weight:700}
+
+/* ---------- section ---------- */
+section{padding:38px 0;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:0}
+.shead{display:flex;align-items:flex-start;gap:12px;cursor:pointer;user-select:none;margin-bottom:8px}
+.snum{
+  flex-shrink:0;width:28px;height:28px;border-radius:8px;background:var(--navy);color:var(--surface);
+  display:grid;place-items:center;font-size:12.5px;font-weight:800;margin-top:3px
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .snum{color:#0f1216}}
+:root[data-theme="dark"] .snum{color:#0f1216}
+h2{font-size:clamp(19px,2.8vw,25px);letter-spacing:-.03em;font-weight:800;line-height:1.35;flex:1}
+h2 small{display:block;font-size:13px;font-weight:600;color:var(--muted);letter-spacing:-.01em;margin-top:3px}
+.caret{flex-shrink:0;color:var(--muted);font-size:13px;margin-top:8px;transition:transform .2s}
+.shead.closed .caret{transform:rotate(-90deg)}
+.sbody{padding-top:14px}
+.sbody.hidden{display:none}
+
+h3{font-size:16px;font-weight:800;letter-spacing:-.02em;margin:30px 0 12px;padding-left:11px;border-left:3px solid var(--navy)}
+h3:first-child{margin-top:6px}
+h4{font-size:13.5px;font-weight:800;color:var(--ink2);margin:20px 0 8px;letter-spacing:-.01em}
+p{margin:9px 0;color:var(--ink2)}
+strong{font-weight:700;color:var(--ink)}
+.mark{background:var(--amberTint);color:var(--amber);font-weight:700;padding:1px 5px;border-radius:4px}
+
+/* ---------- cards ---------- */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow)}
+.grid{display:grid;gap:12px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(165px,1fr))}
+
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px;text-align:center}
+.stat .n{font-size:26px;font-weight:800;letter-spacing:-.035em;color:var(--navy);line-height:1.15}
+.stat .n em{font-style:normal;font-size:15px;font-weight:700}
+.stat .l{font-size:12px;color:var(--muted);font-weight:600;margin-top:5px;line-height:1.4}
+
+/* star callout */
+.star{
+  background:linear-gradient(180deg,var(--amberTint),transparent 140%);
+  border:1px solid color-mix(in srgb,var(--amber) 28%, transparent);
+  border-left:3px solid var(--amber);
+  border-radius:10px;padding:14px 16px;margin:14px 0
+}
+.star .tag{display:inline-block;font-size:11px;font-weight:800;color:var(--amber);letter-spacing:.05em;margin-bottom:5px}
+.star p{margin:4px 0;color:var(--ink)}
+.star p:first-of-type{margin-top:0}
+
+.note{background:var(--surface2);border:1px dashed var(--line);border-radius:10px;padding:12px 15px;margin:12px 0;font-size:13.5px;color:var(--muted)}
+
+/* ---------- funnel ---------- */
+.funnel{display:flex;flex-direction:column;align-items:center;gap:5px;margin:18px 0 6px}
+.fstep{
+  width:100%;max-width:var(--w);background:var(--surface);border:1px solid var(--line);
+  border-radius:9px;padding:11px 16px;display:flex;align-items:center;gap:11px;
+  box-shadow:var(--shadow);transition:.18s
+}
+.fstep:hover{border-color:var(--navy);transform:translateY(-1px)}
+.fstep .i{
+  flex-shrink:0;width:22px;height:22px;border-radius:6px;background:var(--navyTint);color:var(--navy);
+  display:grid;place-items:center;font-size:11.5px;font-weight:800
+}
+.fstep .t{font-size:13.5px;font-weight:700;letter-spacing:-.02em;line-height:1.4}
+.fstep .t em{font-style:normal;display:block;font-size:11.5px;font-weight:600;color:var(--muted);margin-top:1px}
+.fstep.hit{border-color:var(--amber);background:var(--amberTint)}
+.fstep.hit .i{background:var(--amber);color:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .fstep.hit .i{color:#241a08}}
+:root[data-theme="dark"] .fstep.hit .i{color:#241a08}
+.farrow{color:var(--line);font-size:13px;line-height:1}
+
+/* ---------- table ---------- */
+.tw{overflow-x:auto;margin:14px 0;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:520px}
+th,td{padding:11px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line2)}
+thead th{
+  background:var(--surface2);font-size:11.5px;font-weight:800;letter-spacing:.03em;
+  color:var(--muted);text-transform:uppercase;white-space:nowrap;border-bottom:1px solid var(--line)
+}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover{background:var(--surface2)}
+td.k{font-weight:700;color:var(--ink);white-space:nowrap}
+tr.hl td{background:var(--amberTint)}
+tr.hl:hover td{background:var(--amberTint)}
+tr.hl td.k{color:var(--amber)}
+
+/* program table */
+.prog td.who{white-space:nowrap;font-weight:700;color:var(--navy)}
+.prog td.who em{display:block;font-style:normal;font-size:11.5px;font-weight:600;color:var(--muted)}
+.prog .badge{
+  display:inline-block;font-size:11px;font-weight:800;padding:3px 8px;border-radius:5px;white-space:nowrap
+}
+.b-key{background:var(--plumTint);color:var(--plum)}
+.b-topic{background:var(--navyTint);color:var(--navy)}
+.b-disc{background:var(--tealTint);color:var(--teal)}
+.b-all{background:var(--amberTint);color:var(--amber)}
+tr.ours td{background:var(--navyTint)}
+tr.ours:hover td{background:var(--navyTint)}
+
+/* ---------- lists ---------- */
+ul.clean{list-style:none;margin:10px 0}
+ul.clean li{position:relative;padding-left:17px;margin:6px 0;color:var(--ink2)}
+ul.clean li::before{content:"";position:absolute;left:3px;top:11px;width:5px;height:5px;border-radius:50%;background:var(--navy);opacity:.5}
+ul.check li::before{content:"✓";position:absolute;left:0;top:0;width:auto;height:auto;background:none;color:var(--teal);font-weight:800;opacity:1;font-size:13px}
+ul.check li{padding-left:19px}
+
+.pills{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0}
+.pill{
+  font-size:12.5px;font-weight:600;background:var(--surface);border:1px solid var(--line);
+  color:var(--ink2);padding:6px 12px;border-radius:8px
+}
+.pill.on{background:var(--tealTint);border-color:color-mix(in srgb,var(--teal) 32%,transparent);color:var(--teal);font-weight:700}
+
+/* ---------- scenario compare ---------- */
+.scen{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));margin:14px 0}
+.scol{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.scol h5{padding:13px 16px;font-size:13.5px;font-weight:800;letter-spacing:-.02em;border-bottom:1px solid var(--line)}
+.scol.a h5{background:var(--tealTint);color:var(--teal)}
+.scol.b h5{background:var(--plumTint);color:var(--plum)}
+.srow{padding:11px 16px;border-bottom:1px solid var(--line2);font-size:13px}
+.srow:last-child{border-bottom:0}
+.srow .lv{font-size:11px;font-weight:800;letter-spacing:.04em;color:var(--muted);text-transform:uppercase;margin-bottom:3px}
+.srow.key{background:var(--amberTint)}
+.srow.key .lv{color:var(--amber)}
+.srow.gone{opacity:.5}
+.srow em{font-style:normal;color:var(--amber);font-weight:700}
+
+/* ---------- agenda cards (최정학) ---------- */
+.agenda{display:grid;gap:11px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin:14px 0}
+.ag{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:15px 17px;box-shadow:var(--shadow);position:relative;transition:.18s}
+.ag:hover{transform:translateY(-2px);border-color:var(--teal)}
+.ag .no{font-size:11px;font-weight:800;color:var(--teal);letter-spacing:.05em}
+.ag h5{font-size:15px;font-weight:800;letter-spacing:-.025em;margin:3px 0 7px}
+.ag p{font-size:12.5px;margin:4px 0;color:var(--muted);line-height:1.6}
+.ag.hot{border-color:color-mix(in srgb,var(--amber) 40%,transparent);background:linear-gradient(180deg,var(--amberTint),var(--surface) 70%)}
+.ag.hot .no{color:var(--amber)}
+
+/* ---------- value chain ---------- */
+.vc{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin:14px 0;background:var(--surface)}
+.vc-head{background:var(--surface2);padding:9px 14px;font-size:11.5px;font-weight:800;letter-spacing:.04em;color:var(--muted);border-bottom:1px solid var(--line)}
+.vc-sup{display:grid;gap:1px;background:var(--line2)}
+.vc-sup div{background:var(--surface);padding:9px 14px;font-size:12.5px;display:flex;gap:10px}
+.vc-sup b{color:var(--navy);font-weight:700;min-width:66px;flex-shrink:0}
+.vc-flow{display:flex;overflow-x:auto;gap:1px;background:var(--line2);border-top:1px solid var(--line)}
+.vc-flow div{background:var(--surface);padding:12px 10px;flex:1;min-width:96px;text-align:center}
+.vc-flow .s{font-size:12.5px;font-weight:800;color:var(--ink);letter-spacing:-.02em}
+.vc-flow .d{font-size:11px;color:var(--muted);margin-top:3px;line-height:1.5}
+.vc-flow div:last-child{background:var(--tealTint)}
+.vc-flow div:last-child .s{color:var(--teal)}
+
+/* ---------- proposals ---------- */
+.props{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin:14px 0}
+.prop{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--plum);border-radius:10px;padding:14px 16px}
+.prop .n{font-size:11px;font-weight:800;color:var(--plum);letter-spacing:.05em}
+.prop p{font-size:13px;margin:5px 0 0;color:var(--ink2);line-height:1.6}
+
+/* quote */
+blockquote{
+  border-left:3px solid var(--plum);background:var(--plumTint);
+  padding:13px 17px;border-radius:0 10px 10px 0;margin:14px 0;
+  font-size:14px;color:var(--ink);font-weight:600;line-height:1.68
+}
+blockquote cite{display:block;font-style:normal;font-size:12px;font-weight:600;color:var(--muted);margin-top:7px}
+
+/* ---------- questions ---------- */
+.q{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);margin:9px 0;overflow:hidden;box-shadow:var(--shadow)}
+.q-h{padding:14px 17px;display:flex;gap:12px;align-items:flex-start;cursor:pointer;user-select:none}
+.q-h:hover{background:var(--surface2)}
+.q-n{flex-shrink:0;font-size:11.5px;font-weight:800;color:var(--surface);background:var(--navy2);width:26px;height:26px;border-radius:7px;display:grid;place-items:center;margin-top:1px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .q-n{color:#0f1216}}
+:root[data-theme="dark"] .q-n{color:#0f1216}
+.q.top .q-n{background:var(--amber)}
+.q-t{flex:1;font-size:14px;font-weight:700;letter-spacing:-.02em;line-height:1.5}
+.q-t .flag{display:inline-block;font-size:10.5px;font-weight:800;color:var(--amber);background:var(--amberTint);padding:2px 7px;border-radius:5px;margin-left:6px;vertical-align:1px;white-space:nowrap}
+.q-c{color:var(--muted);font-size:12px;flex-shrink:0;margin-top:5px;transition:transform .2s}
+.q.open .q-c{transform:rotate(90deg)}
+.q-b{padding:0 17px 15px 55px;font-size:13.5px;display:none}
+.q.open .q-b{display:block}
+.q-b p{margin:6px 0}
+.q-b ul.clean li{font-size:13.5px}
+
+/* takeaway */
+.take{counter-reset:tk;display:grid;gap:10px;margin:14px 0}
+.tk{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:15px 18px 15px 52px;position:relative;box-shadow:var(--shadow)}
+.tk::before{
+  counter-increment:tk;content:counter(tk);
+  position:absolute;left:16px;top:15px;width:24px;height:24px;border-radius:7px;
+  background:var(--navy);color:var(--surface);display:grid;place-items:center;font-size:12px;font-weight:800
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tk::before{color:#0f1216}}
+:root[data-theme="dark"] .tk::before{color:#0f1216}
+.tk p{margin:0;font-size:13.5px;line-height:1.66}
+
+/* footer */
+footer{padding:34px 0 60px;color:var(--muted);font-size:12.5px}
+footer .fl{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:8px}
+
+/* focus mode */
+body.focus .detail{display:none!important}
+body.focus .fstep .t em{display:none}
+
+.hint{font-size:12px;color:var(--muted);margin-top:10px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.kbd{font-size:11px;font-weight:700;border:1px solid var(--line);background:var(--surface);padding:2px 6px;border-radius:4px;color:var(--ink2)}
+
+@media (max-width:640px){
+  body{font-size:14.5px}
+  .topbar-in{height:52px;gap:10px}
+  .brand{display:none}
+  .sbody{padding-top:10px}
+  .q-b{padding-left:17px}
+}
+@media print{
+  .topbar{display:none} .sbody.hidden{display:block!important} .q-b{display:block!important}
+  body{background:#fff}
+}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="topbar-in">
+    <div class="brand">경기지역학 콜로키움 03 <span>· 09.08</span></div>
+    <div class="navscroll">
+      <nav id="nav">
+        <a href="#frame">이 회차의 자리</a>
+        <a href="#prog">프로그램</a>
+        <a href="#s1">발표 1</a>
+        <a href="#s2">발표 2</a>
+        <a href="#s3">지정토론</a>
+        <a href="#s4">종합토론 쟁점</a>
+        <a href="#s5">나온 제안</a>
+        <a href="#next">다음 회차</a>
+      </nav>
+    </div>
+    <div class="tools">
+      <button class="tbtn" id="focusBtn" title="★ 표시된 핵심만 남기고 상세를 접습니다">★ 핵심만</button>
+      <button class="tbtn" id="themeBtn" title="라이트/다크 전환">◐</button>
+    </div>
+    <div class="progress" id="prog-bar"></div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<header class="hero">
+  <div class="eyebrow">경기도문화원연합회 · 2026 경기지역학 네트워크 「지역학 길찾기 4+1」</div>
+  <h1>경기지역학 콜로키움 03 기록</h1>
+  <div class="sub">문화원의 시민 참여 지역학 사례와 유형</div>
+  <div class="meta">
+    <span class="chip"><b>일시</b> 2026. 9. 8.(화) 14:00~17:00</span>
+    <span class="chip"><b>장소</b> 경기문화재단 정책실 회의실(9층)</span>
+    <span class="chip"><b>주최</b> 경기도문화원연합회 · 경기학회 · 경기문화재단 · 경기연구원</span>
+    <span class="chip"><b>발표</b> 박성희 · 민성혜</span>
+    <span class="chip"><b>지정토론</b> 민문기 · 김지혜 · 한정혜</span>
+  </div>
+  <div class="hint">
+    <span class="kbd">★ 핵심만</span> 을 누르면 상세가 접히고 요점만 남습니다 ·
+    제목을 누르면 섹션이 접힙니다
+  </div>
+
+  <div class="star" style="margin-top:16px">
+    <span class="tag">🔒 공개하지 않습니다 — 2026-09-04 처장 지시</span>
+    <p><strong>AI 정리 기록은 내부 보관만 하고 외부에 공개하지 않습니다.</strong>
+    아카이브 실험은 내부에서 이어가되 <strong>연말 책 발간 시 내용 검수 참고자료로만</strong> 씁니다.</p>
+    <p>따라서 이 문서는 <strong>공개용 서식으로 만들었으나 공개하지 않는 내부 자료</strong>입니다.
+    발표문·토론문과 당일 발언을 바탕으로 연합회가 정리한 것이고 확정본이 아닙니다.
+    발언 요지는 정리 과정에서 뜻이 달라졌을 수 있으며, 인용할 문장은 자료집 원문에서 가져옵니다.</p>
+  </div>
+</header>
+
+<!-- ===== 이 회차의 자리 ===== -->
+<section id="frame">
+  <div class="shead" data-sec>
+    <div class="snum">▲</div>
+    <h2>이 회차의 자리<small>02에서 나온 물음에 문화원의 사례로 답하는 자리</small></h2>
+    <div class="caret">▼</div>
+  </div>
+  <div class="sbody">
+    <p>9월 1일 콜로키움 02에서는 <strong>「문화원은 자료를 만들지만 쓰지는 못한다」</strong>는 이야기가 여러 자리에서 나왔습니다.
+    03은 그 자리에 문화원의 실제 사례를 놓고 이야기하는 회차였습니다. 시민이 직접 기록하는 지역학을 6년째 해 온 미추홀학산문화원과, 40년 가까이 광명학과 아카이브를 쌓아 온 광명문화원이 발표했고, 성북·용인·이천의 실무자와 시민기록자가 토론했습니다.</p>
+
+    <div class="funnel">
+      <div class="fstep" style="--w:100%"><div class="i">02</div><div class="t">9/1 — 문화원은 자료를 만들지만 쓰지 못한다<em>외부의 진단</em></div></div>
+      <div class="farrow">▼</div>
+      <div class="fstep hit" style="--w:88%"><div class="i">03</div><div class="t">9/8 — 사례가 아니라 조건 이야기가 되었다<em>시민기록 활동비의 기준 · 문화원 업무기록의 보존 · 함께 쓸 플랫폼</em></div></div>
+      <div class="farrow">▼</div>
+      <div class="fstep" style="--w:76%"><div class="i">04</div><div class="t">9/15 — 지역문화원의 선순환과 경기지역학의 미래<em>경기·인천 공동 회차</em></div></div>
+      <div class="farrow">▼</div>
+      <div class="fstep" style="--w:64%"><div class="i">포럼</div><div class="t">9/29 — 시민지역학과 지역문화 생태계<em>기관별 역할과 협의체</em></div></div>
+    </div>
+
+    <blockquote>
+      오늘은 사례 이야기가 아니라 조건 이야기가 되었습니다. 남는 질문은 하나입니다. 시민이 주체가 되는 데 드는 값을 누가 치르는가.
+      <cite>— 이날 쟁점판의 관통 문장</cite>
+    </blockquote>
+  </div>
+</section>
+
+<!-- ===== 프로그램 ===== -->
+<section id="prog">
+  <div class="shead" data-sec>
+    <div class="snum">0</div>
+    <h2>프로그램<small>발표 2 · 지정토론 3인(토론문 4편) · 종합토론</small></h2>
+    <div class="caret">▼</div>
+  </div>
+  <div class="sbody">
+    <div class="tw">
+      <table class="prog">
+        <thead><tr><th>구분</th><th>주제</th><th>발표·토론자</th></tr></thead>
+        <tbody>
+          <tr><td><span class="badge b-topic">발표 1</span></td><td>시민주체 기반의 지역학 실행과 기록자치<br><span class="detail">— 미추홀학산문화원 미추홀시민아카이브 사례 및 성과를 중심으로</span></td><td class="who">박성희<em>미추홀학산문화원 사무국장</em></td></tr>
+          <tr><td><span class="badge b-topic">발표 2</span></td><td>광명문화원의 광명학 연구와 시민아카이브 설립을 위한 도전<br><span class="detail">— 광명시의 급속한 도시개발 과정 속 아카이브를 위한 고군분투기</span></td><td class="who">민성혜<em>광명문화원 부설 광명학연구소장</em></td></tr>
+          <tr><td><span class="badge b-disc">지정토론</span></td><td>두 발표 각각에 대하여</td><td class="who">민문기<em>성북문화원 성북학아카이브팀장</em></td></tr>
+          <tr><td><span class="badge b-disc">지정토론</span></td><td>시민은 언제 지역학의 주체가 되는가 · 유형을 무엇으로 나눌 것인가</td><td class="who">김지혜<em>용인문화원</em></td></tr>
+          <tr><td><span class="badge b-disc">지정토론</span></td><td>두 발표 각각에 대하여 (토론문 2편)</td><td class="who">한정혜<em>지역학 연구자 · 시민기록자</em></td></tr>
+          <tr class="ours"><td><span class="badge b-all">종합토론</span></td><td>발표·토론자와 참석자 전원 · 약 2시간</td><td class="who">사회 경기도문화원연합회<em></em></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="detail">02의 논의를 받아 이번 회차부터 발표를 15분으로 줄이고, 발표 두 편과 지정토론 세 편을 쉬지 않고 이어 간 뒤 남은 시간을 전부 참석자 전원의 토론에 썼습니다. 종합토론이 두 시간 가까이 이어졌습니다.</p>
+  </div>
+</section>
+
+<!-- ===== 발표 1 ===== -->
+<section id="s1">
+  <div class="shead" data-sec>
+    <div class="snum">1</div>
+    <h2>발표 1 — 시민주체 기반의 지역학 실행과 기록자치<small>박성희 · 미추홀학산문화원 사무국장</small></h2>
+    <div class="caret">▼</div>
+  </div>
+  <div class="sbody">
+    <p>미추홀학산문화원은 2014년 「오래된 미래, 마당예술생태계의 회복」을 중장기 비전으로 내걸고, 공공·전문가 중심의 거시사 기록에서 벗어나 <strong>주민이 스스로 삶의 터전을 기록하는 「시민 주도 기록자치」</strong>를 핵심 전략으로 삼았습니다. 2019년 시민기록단 1기가 출범했고, 지금은 1기와 3기를 중심으로 한 정예 8명이 자율 운영 규정과 정기회의를 갖추고 활동합니다.</p>
+
+    <h3>기록 생태계 다섯 단계</h3>
+    <div class="vc">
+      <div class="vc-head">문화원(기획·행정·매개) — 시민기록단(구술·수집·등록) — 전문가(멘토링·시스템 자문)의 3자 협력 구조 위에서</div>
+      <div class="vc-flow">
+        <div><div class="s">① 기록주체</div><div class="d">시민기록단 양성·운영<br>매뉴얼·구술채록법·산업사 특강·견학</div></div>
+        <div><div class="s">② 기록생산</div><div class="d">주제별 구술기록<br>2021~2026 7개 주제</div></div>
+        <div><div class="s">③ 기록수집</div><div class="d">사진·문서 공모전<br>누적 1,072편 · 시민 기증</div></div>
+        <div><div class="s">④ 기록플랫폼</div><div class="d">구독형 아카이브 도입<br>분류·속성·맥락은 문화원이 설계</div></div>
+        <div><div class="s">⑤ 기록환류</div><div class="d">『미추홀, 살아지다』 시리즈<br>전시·포럼·마당극·마을교육</div></div>
+      </div>
+    </div>
+    <p class="detail">구술 주제 — 음식문화(2021), 숭의목공장인(2022), 전세사기 현장 기록과 인천기계산업단지(2023), 미추홀 사람들과 실향민(2024), 학익동 일대 도시변화(2025), 용현5동 마을 변화(2026, 진행 중). 2023년 전세사기 기록에서는 피해자에게 구술을 강요하지 않고 현수막·보도자료·집회 현장을 기록하며 <strong>「기록하고자 하는 마음이 곧 기록할 권리가 되는 것은 아니다」</strong>라는 기록자의 윤리를 성찰했습니다.</p>
+
+    <h3>학익동 — 주민자치회와 함께 만든 기록 거버넌스</h3>
+    <p>2025년 학익1동 행정복지센터·주민자치회·학익고등학교와 협약을 맺고, 옛 동양화학 부지가 대규모 주거단지로 바뀌는 과정을 기록했습니다. 통장자율회·부녀회·경로당까지 돌며 옛 사진을 모으는 캠페인을 벌였고, 주민들이 구술자를 추천하는 릴레이로 39인의 구술을 병행했습니다. 공모 사진으로 행정복지센터에서 열흘간 전시를 열었고, 고등학생들은 「기억은 방울방울」 커뮤니티 맵핑에 참여했습니다. 2026년에는 이 방식을 용현5동에 옮기고, 마을박물관 주민 큐레이터와 함께 흩어진 자료를 아카이브에 올리는 일까지 시민기록단이 맡고 있습니다.</p>
+
+    <div class="star">
+      <span class="tag">★ 발표자가 강조한 것 — 기록의 사회적 자본</span>
+      <p>거시사에 기록되지 않던 목공 장인, 공장 근로자, 식당 주인의 삶이 지역사의 주체로 인정받는 <strong>「지역사회의 헌정」</strong>이 되었고, 구술자와 기록자의 관계가 단골과 이웃의 관계로 이어졌으며, 옛 주민과 신규 입주민이 전시에서 같은 동네의 기억을 나누었습니다.</p>
+      <p class="detail">종합토론에서 발표자는 「사진 있어?」가 마을의 화두가 되어 다락의 앨범을 꺼내 오는 것도 하나의 참여라고 했습니다. 구술기록의 최종 결과물보다 그 과정에서 생기는 관계의 네트워크가 큰 의미의 기록 공동체라는 것입니다.</p>
+    </div>
+
+    <h3>향후 과제</h3>
+    <ul class="clean">
+      <li>주민자치회–문화원–시민기록단 편대를 <strong>미추홀구 21개 동으로 확장</strong>하고, 문화원은 모든 기록을 직접 생산하는 기관에서 지역의 기록 주체들을 연결하는 매개자로</li>
+      <li>구술 채록비·회의 수당·심화 교육 등 <strong>시민기록단 운영의 최소한의 제도적 지원기준</strong> 마련</li>
+      <li>단체장 변경 등에 흔들리지 않도록 <strong>「지역학 및 민간 기록자치 활성화 조례(가칭)」</strong> 제정 추진</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== 발표 2 ===== -->
+<section id="s2">
+  <div class="shead" data-sec>
+    <div class="snum">2</div>
+    <h2>발표 2 — 광명문화원의 광명학 연구와 시민아카이브 설립을 위한 도전<small>민성혜 · 광명문화원 부설 광명학연구소장</small></h2>
+    <div class="caret">▼</div>
+  </div>
+  <div class="sbody">
+    <div class="note">발표자료는 슬라이드 42장이며 자료집에 원본 그대로 실렸습니다. 아래는 슬라이드와 토론문, 당일 발언을 바탕으로 정리한 요지입니다.</div>
+
+    <p>광명은 서울 생활권이지만 행정구역은 경기도인 도시입니다. 전화 지역번호가 서울과 같은 02라는 사실이 「광명시민의 정체성 문제」를 압축해 보여 줍니다. 1981년 시 승격 이후 재개발이 이어지며 자연마을이 사라졌고, 광명문화원은 1991년 창립 때부터 <strong>「정주도시를 위한 문화 활동」</strong>으로 지역사 발굴을 시작했습니다.</p>
+
+    <h3>네 개의 장</h3>
+    <div class="funnel">
+      <div class="fstep" style="--w:100%"><div class="i">Ⅰ</div><div class="t">광명시 도시 성장과정의 특징<em>행정구역 변천 · 정체성 문제 · 도시화로 사라지는 자연마을</em></div></div>
+      <div class="farrow">▼</div>
+      <div class="fstep" style="--w:92%"><div class="i">Ⅱ</div><div class="t">정주도시를 위한 문화 활동 — 문화원의 설립과 활동<em>『광명문화』(1993) · 최초의 마을지 『학온동지』 · 광명향토사 준공(2005) · 광명학연구소(2013)</em></div></div>
+      <div class="farrow">▼</div>
+      <div class="fstep hit" style="--w:84%"><div class="i">Ⅲ</div><div class="t">광명학연구소, 광명 아카이브를 위한 기반 다지기<em>설월리 마을 아카이브(2009~) · 공공기록으로 거시사, 구술·시민기록으로 미시사 · 사진집 3권(2018~2020)</em></div></div>
+      <div class="farrow">▼</div>
+      <div class="fstep" style="--w:76%"><div class="i">Ⅳ</div><div class="t">새로운 매체 기록과 확산 콘텐츠, 시민참여 교육<em>시민기록가 양성 「담다(談多)」 2017~2019 · 드론·3D 실감촬영·메타버스 · 2025 광명역사관 개관</em></div></div>
+    </div>
+
+    <h3>설월리 — 한 마을을 매체를 바꿔 가며 추적한 기록</h3>
+    <div class="pills">
+      <span class="pill">2009 어르신 시민기록가 마을조사</span>
+      <span class="pill">2018 드론 영상</span>
+      <span class="pill">2019 사운드아트 영상</span>
+      <span class="pill on">2023 3D 실감 촬영</span>
+      <span class="pill">2023~24 3D 모형 · VR 투어</span>
+    </div>
+    <p class="detail">샘터·빨래터·독립운동가 생가처럼 자연발생적으로 생긴 공간은 원형 데이터를 확보해야 3D 재현·모델링·사이버 박물관으로 이어갈 수 있다는 것이 발표의 논지입니다. 재개발과 문화재 미지정으로 철거된 마을 구판장과 옛 가옥이 사례로 제시되었고, 2025년에는 시민과 함께 문화유산을 3D로 기록하는 교육을 시작했습니다.</p>
+
+    <div class="star">
+      <span class="tag">★ 종합토론에서 발표자가 보탠 것 — 기록이 없으면 증명이 안 된다</span>
+      <p>상위기관에 보고한 문서는 공공기록물 평가 주기에 따라 폐기됩니다. 문화원은 보고하고 나면 정리하지 않으니 <strong>10년 뒤에 남는 것은 책 한 권</strong>이라는 것입니다. 기록물관리법의 대상에 지방문화원은 들어 있지 않으므로 오히려 <strong>문화원이 스스로 영구 소장하면 된다</strong>고 했습니다.</p>
+      <p><strong>「10년 전에 무엇을 하다 멈췄는지, 지금 다시 해도 되는지 — 이것을 알 수 있게 하는 것이 아카이브다. 박물관과 도서관은 못 한다.」</strong> 여러 기관에 같은 파일을 보내는 것만으로는 아카이브가 되지 않으며, 문화원과 연합회가 <strong>업무를 하는 순간부터 기록이 관리되는 체계</strong>를 갖추고 그 위에 수집물을 얹어야 한다는 제안입니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 지정토론 ===== -->
+<section id="s3">
+  <div class="shead" data-sec>
+    <div class="snum">3</div>
+    <h2>지정토론<small>토론자별로 6분 발언, 발표자가 바로 답하는 방식</small></h2>
+    <div class="caret">▼</div>
+  </div>
+  <div class="sbody">
+
+    <h3>민문기 <span class="detail">— 성북문화원 성북학아카이브팀장</span></h3>
+    <p>전국 232개 문화원은 232개의 모습을 하고 있고 첫 번째 과제는 「살아남기」라는 데서 출발했습니다. 미추홀에는 구독형 플랫폼에서 자체 시스템으로 갈 의향이 있는지, 시민기록단에 너무 많은 짐을 지우는 것은 아닌지 — <strong>선의로 참여하는 것인지, 유형적 보상을 매개로 하는 것인지</strong> — 그리고 21개 동으로 넓힐 때 지역 편차를 어떻게 넘을지 물었습니다. 광명에는 3D·드론·VR을 시민에게 어떻게 제공하고 참여를 이끌 것인지, 법률적 절차는 없는지, 토박이와 신규 주민의 통합에 실제로 어떻게 기여하는지 물었습니다.</p>
+    <p class="detail">종합토론에서 토론자는 「짐이 과하다」는 말은 활동비 규모를 알기 전의 생각이었고, 질문은 성북에 부족한 것 위주로 본 것이라고 덧붙였습니다. 성북은 명함·명찰, 본인 이름의 활동보고서 게시, 책의 저자 등재로 시민기록단에 보답하고 있으며 그것이 「선의에 기댄다」고 표현한 이유라고 했습니다.</p>
+
+    <h3>김지혜 <span class="detail">— 용인문화원</span></h3>
+    <div class="grid g2">
+      <div class="card"><strong>시민은 언제 지역학의 주체가 되는가</strong><p style="font-size:13px">기록에 참여하는 것과 지역학의 주체가 되는 것은 같은 뜻이 아닙니다. 무엇을 기록할지, 때로는 <strong>기록하지 않을지</strong>까지 시민이 판단해야 주체라 부를 수 있습니다. 미추홀의 전세사기 기록이 그 사례입니다. 시민기록가가 다음 주제를 스스로 제안하는 단계까지 갈 수 있는지 물었습니다.</p></div>
+      <div class="card"><strong>유형을 무엇으로 나눌 것인가</strong><p style="font-size:13px">시민기록가·구술·아카이브라는 사업 이름이 아니라, <strong>시민이 지역지식의 생산·해석·활용 과정에서 무엇을 하고 어느 정도의 판단 권한을 갖는가</strong>로 볼 수 있습니다. 그렇게 보면 해설사처럼 문화원이 오래 해 왔지만 지역학이라 부르지 않았던 활동도 다시 보입니다.</p></div>
+    </div>
+    <p class="detail">제언으로 청소년을 시민지역학의 다음 주체로 제시했습니다. 용인의 청소년 Y-로드 경험에서, 지역을 잘 모르고 관계 맺을 기회가 없었던 청소년이 지역을 직접 경험하고 질문하면서 자기 지역과 관계를 맺게 되는 과정을 보았다는 것입니다.</p>
+
+    <h3>한정혜 <span class="detail">— 지역학 연구자 · 시민기록자(이천)</span></h3>
+    <p>시민기록자 당사자의 자리에서 물었습니다. 미추홀에는 격년으로 기수를 뽑는 배경, 기수별 차이와 신규 유입 경로, 그리고 <strong>「제도적·재정적 안정화」가 구체적으로 어떤 처우 모델인지</strong> — 활동비 정액제, 건당 채록비, 고용 형태, 체류 공간 — 와 구술 동의·저작권·사후 공개 철회 절차를 물었습니다. <strong>「기록의 지속가능성은 결국 사람의 지속가능성」</strong>이라는 것이 질문의 배경입니다. 광명에는 「담다」 이후 시민기록가의 규모와 자율성, 3D·드론 장비를 유지할 인력과 예산, 철거된 자원의 기록이 실제로 어떻게 쓰였는지, 역사관에서 시민아카이브로 가는 로드맵을 물었습니다.</p>
+    <blockquote>
+      전문가는 "내가 원하는 걸 이렇게 가져간다"고 가르쳐요. 하지만 우리는 여러 명이기 때문에 이걸 다 기록할 수 있다고 해요. 이게 시민기록자와 전문가의 아주 극적인 차이라고 생각합니다.
+      <cite>— 한정혜 (종합토론)</cite>
+    </blockquote>
+    <p class="detail">이천·여주 같은 농촌형 지역은 「사람과 구술의 소멸」이, 광명 같은 도시형 지역은 「공간과 물리적 자원의 소멸」이 시급한 과제라 기록해야 할 위기의 성격이 다르며, 3D 기록은 구술과 결합해야 공간과 사람의 기억을 함께 남길 수 있다고 제언했습니다.</p>
+  </div>
+</section>
+
+<!-- ===== 종합토론 쟁점 ===== -->
+<section id="s4">
+  <div class="shead" data-sec>
+    <div class="snum">4</div>
+    <h2>종합토론 쟁점<small>참석자 전원이 두 시간 가까이 이야기한 네 가지</small></h2>
+    <div class="caret">▼</div>
+  </div>
+  <div class="sbody">
+    <div class="note">쟁점은 「A냐 B냐」로 결론을 내지 않았습니다. 어디까지, 어떤 조건에서 가능한지를 다음 회차와 포럼으로 이어 가기 위해 적었습니다.</div>
+
+    <h3>① 선의인가, 노동인가 — 시민기록의 값</h3>
+    <p>세 문화원이 같은 공백을 각자 다른 방법으로 메우고 있었습니다. 미추홀은 정부 프로젝트에서 잡았던 구술 1건 단가를 빌려 쓰고, 성북은 출장비·원고·사진·구술 시간으로 쪼개어 지급하며, 용인은 민간기록물 조례가 있으나 대상이 전문가로 한정되어 있습니다. <strong>시민기록 활동비의 기준이 어디에도 없다</strong>는 것입니다.</p>
+    <div class="scen">
+      <div class="scol a"><h5>활동비는 합의돼야 한다</h5>
+        <div class="srow"><div class="lv">박성희</div>노동자 집단을 만들자는 것이 아니라 활동비 지급 자체가 합의되었으면 한다. 물품이나 명예로는 기록단을 유지하기 어렵고, <strong>최소한의 활동비가 기록단 유지의 바탕</strong>이다. 사회적 일자리로 접근하고, 한 곳이 아니라 연합회·학회 차원에서 공론화해야 조례로 이어진다</div>
+        <div class="srow"><div class="lv">한정혜</div>구술 채록과 자료 정리, 메타데이터 입력은 상당한 시간과 노동이다. 자원봉사로만 보지 말고 그 노동의 가치를 사회적으로 인정하는 논의가 필요하다</div>
+      </div>
+      <div class="scol b"><h5>프레임이 금액을 정한다</h5>
+        <div class="srow"><div class="lv">김지혜</div><strong>노동자로 보는 순간 노동의 대가가 따르고</strong>, 그러면 전문가와 같은 결과물을 요구받게 된다. 활동가로 보면 실비 지급이 된다. 문화원은 결과물보다 과정이 중요하다는 것을 양성 과정에서 계속 공유해야 한다</div>
+        <div class="srow"><div class="lv">최영주 (연합회 사무처장)</div>금전 보상인지, 다른 방식의 보상인지, 일거리로 볼 것인지 — 이 쟁점들을 정리하고 <strong>앞으로 어떤 구조에서 논의할지를 확정하는 방식</strong>으로 마치자</div>
+      </div>
+    </div>
+    <div class="star">
+      <span class="tag">🔴 결론이 나지 않은 반문 — 9월 29일 포럼으로</span>
+      <p>참석한 한 연구자가 이렇게 물었습니다. <strong>「대가를 주는 것이 맞다. 그런데 대가를 주면 확보한 예산만큼만 시민을 참여시킬 수 있다. 그러면 시민 중심이라는 취지가 출발부터 소수의 시민만 참여시키는 결과가 된다. 그렇다면 구태여 시민활동가를 왜 양성하는가 — 훈련된 전문가에게 원고료를 주면 되지 않는가.」</strong></p>
+      <p>양성을 폐지하자는 것이 아니라 <strong>정말 많은 시민이 주체가 되어 지역을 조사·기록·연구할 방법이 무엇인지</strong>를 찾자는 문제 제기였으며, 본인이 포럼에서 정리해 의견을 내겠다고 했습니다.</p>
+      <p class="detail">같은 자리에서 나온 답의 실마리 둘 — 돈이 드는 참여(기록단)와 돈이 들지 않는 참여(앨범을 꺼내 오는 마을 전체)를 나누어 보자는 것(박성희), 그리고 문화원의 시민기록만이 아니라 해설사와 지역 지식 기반 활동까지 <strong>지역과 관련된 시민 활동 전체를 시민지역학으로</strong> 보자는 것(경기학회 회장)입니다.</p>
+    </div>
+
+    <h3>② 여덟 명이 남은 것은 실패인가, 과정인가</h3>
+    <p>미추홀은 30명이 도전해 8명이 남았습니다. 한 꼭지가 사전조사부터 구술자 검수까지 6~7개월이 걸려 견디지 못한 분이 나갔고, 남은 분들은 <strong>구술자에게 「고맙다」는 말을 너무 많이 들었기 때문에 남았다</strong>고 발표자는 말했습니다. 광명도 30명에서 8명이 남았지만 그래도 가야 하며 내년에는 재교육을 하겠다고 했습니다.</p>
+    <blockquote>
+      숭의목공예 80대 어르신 구술기록 출판기념회를 했을 때 구술자 14명 중 대부분이 우셨어요. 저는 그게 헌정이라고 생각하거든요. … 처음 갔을 때는 "왜 이런 쓸데없는 일을 하냐"고 쫓겨났어요. 세 번을 갔더니 하루 종일 얘기를 해주는 거예요. 그날 아침에 목욕을 가셨는지 비누 향기가 났어요.
+      <cite>— 박성희 (종합토론)</cite>
+    </blockquote>
+    <div class="grid g2">
+      <div class="card"><strong>과정을 어떻게 평가할 것인가 — 김지혜</strong><p style="font-size:13px">문화원의 강점은 지속가능성이고, 그것은 가시적 평가를 받지 않기 때문에 가능합니다. 과정 평가를 인원수로 가시화하는 순간 그 강점을 잃습니다. 그래서 척도를 <strong>참여자의 자기효능감과 지역 정체성의 사전·사후 변화</strong>로 잡자는 제안입니다. 평균 연령 65세의 AI×지역학 프로그램 12회차에서 실제로 효능감과 정체성이 올라간 것을 확인했다고 했습니다. <em>"아는 만큼 모이는 게 아니라 사랑하면 모이는 거예요."</em></p></div>
+      <div class="card"><strong>지역학은 무엇을 하는 것인가 — 경기학회 회장</strong><p style="font-size:13px">결과물은 AI 시대에 벽이 낮아져 누구나 낼 수 있습니다. 중요한 것은 시민이 지역을 알아가는 과정에서 생기는 애정이고, 그것을 문화정책으로 만들어야 합니다. 「지역학은 무엇인가」가 아니라 <strong>「지역학은 무엇을 하는 것인가」</strong>를 물어야 하며, 그 과정이 유형화되어야 다른 문화원도 적용할 수 있습니다. 이번 회차의 제목이 「사례와 유형」인 이유입니다.</p></div>
+    </div>
+    <p class="detail">「걸러지는 것을 전제로 설계할 것인가, 남게 만드는 설계를 할 것인가」가 이 쟁점의 물음으로 남았습니다. 한정혜는 문화원 명찰 하나로 「빗장이 열리는 순간」을 여러 번 경험했으며, 이름표와 소속감이 책임과 역할을 함께 준다고 했습니다.</p>
+
+    <h3>③ 만든 기록을 누가 쓰는가</h3>
+    <ul class="clean">
+      <li><strong>민성혜</strong> — 지장물 분쟁을 겪는 주민이 설월리 기록을 증거로 가져갔다. 시민들에게 「빼앗기지 않으려면 기록을 가지고 계시라」고 한다</li>
+      <li><strong>박성희</strong> — 전세사기 기록은 소송 우려로 3년째 공개하지 못하고 있다</li>
+      <li><strong>김지혜</strong> — 일방적으로 제공하는 것은 활용이 아니다. 그것은 AI가 한다</li>
+      <li><strong>민성혜</strong> — 3D 스캔 데이터가 외부 서버로 가는 데이터 주권의 문제가 있다</li>
+    </ul>
+    <p class="detail">활용을 열람 수로 볼 것인가, 실제로 쓰인 사례로 볼 것인가가 물음으로 남았습니다. 구술 동의·저작권·사후 공개 철회 절차는 발표자가 따로 답하기로 했습니다.</p>
+
+    <h3>④ 연합회가 만들 것은 플랫폼인가, 기준인가</h3>
+    <p>세 발언이 한 방향을 가리켰습니다. <strong>박성희</strong>는 시도연합회가 분산형 플랫폼을 구축·관리하고 데이터 권한은 각 문화원에 두자고 했고, <strong>민성혜</strong>는 사무국 업무기록 위에 수집물이 얹히는 구조여야 아카이브라고 했으며, <strong>경기학회 회장</strong>은 경기도메모리를 문화원의 과정을 보여주는 오픈형 아카이브로 연합회가 활용할 수 있을지 물으며 <em>"지금 우선순위로 보면 아카이빙 구축이 가장 시급하다"</em>고 했습니다.</p>
+    <p class="detail">용인문화원은 국장 인수인계로 받은 것이 시건장치와 출입키뿐이었다며, 지역사회 아카이빙만이 아니라 <strong>행정·기획·정책의 아카이빙</strong>도 필요하다는 것을 이날 깨달았다고 했습니다. 경기지역학이 먼저 만들 것은 공동 플랫폼인가, 활동비·기록의 표준인가가 물음으로 남았습니다.</p>
+  </div>
+</section>
+
+<!-- ===== 나온 제안 ===== -->
+<section id="s5">
+  <div class="shead" data-sec>
+    <div class="snum">5</div>
+    <h2>이날 나온 제안<small>모두 제안 단계이며 확정된 것이 아닙니다</small></h2>
+    <div class="caret">▼</div>
+  </div>
+  <div class="sbody">
+    <div class="props">
+      <div class="prop"><div class="n">① 시민기록 활동비의 제도화 <span style="font-weight:600;color:var(--muted)">— 박성희</span></div><p>사회적 일자리 개념으로 활동비를 제도화하고, 개별 문화원이 아니라 연합회·학회 차원에서 공론화해 조례로 이어지게 하자는 제안입니다.</p></div>
+      <div class="prop"><div class="n">② 문화원·연합회의 업무기록 체계 <span style="font-weight:600;color:var(--muted)">— 민성혜</span></div><p>업무를 하는 순간부터 기록이 분류·관리되는 체계를 만들고 그 위에 수집물을 얹자는 제안입니다. 70년 문화원사를 쓸 자료가 남게 하기 위해서입니다.</p></div>
+      <div class="prop"><div class="n">③ 경기도메모리의 활용 <span style="font-weight:600;color:var(--muted)">— 경기학회 회장</span></div><p>재단이 보유한 경기도메모리를 문화원의 과정을 보여주는 오픈형 아카이브로 연합회가 활용할 수 있을지 검토하자는 제안입니다. 확인이 필요한 사항입니다.</p></div>
+      <div class="prop"><div class="n">④ 과정 중심 평가 척도 <span style="font-weight:600;color:var(--muted)">— 김지혜</span></div><p>참여자의 자기효능감과 지역 정체성의 사전·사후 변화로 시민지역학의 성과를 재자는 제안입니다.</p></div>
+      <div class="prop"><div class="n">⑤ 시민지역학의 범위 <span style="font-weight:600;color:var(--muted)">— 경기학회 회장</span></div><p>문화원의 시민기록만이 아니라 해설사, 지역 지식 기반 활동까지 지역과 관련된 시민 활동 전체를 시민지역학으로 보자는 제안입니다. 문화원이 하는 일 중 어디까지를 지역학으로 볼 것인지는 다음 회차의 물음입니다.</p></div>
+      <div class="prop"><div class="n">⑥ 청소년을 다음 주체로 <span style="font-weight:600;color:var(--muted)">— 김지혜</span></div><p>성인 시민의 참여를 넓힌 다음은 청소년이 지역학을 만나는 길을 만드는 일이라는 제언입니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 다음 회차 ===== -->
+<section id="next">
+  <div class="shead" data-sec>
+    <div class="snum">6</div>
+    <h2>다음 회차<small>지역학 길찾기 4+1</small></h2>
+    <div class="caret">▼</div>
+  </div>
+  <div class="sbody">
+    <div class="tw">
+      <table>
+        <thead><tr><th>회차</th><th>일시</th><th>주제</th></tr></thead>
+        <tbody>
+          <tr><td class="k">콜로키움 01</td><td>2026. 8. 28.(목)</td><td>인천·경기 공동 — 초광역 지역학 논의 <span class="detail">(종료)</span></td></tr>
+          <tr><td class="k">콜로키움 02</td><td>2026. 9. 1.(화)</td><td>AI 시대 지역학의 전환, 지식에서 실천으로 <span class="detail">(종료)</span></td></tr>
+          <tr class="hl"><td class="k">콜로키움 03</td><td>2026. 9. 8.(화)</td><td>문화원의 시민 참여 지역학 사례와 유형 <span class="detail">(이 기록)</span></td></tr>
+          <tr><td class="k">콜로키움 04</td><td>2026. 9. 15.(화) 14:00</td><td>지역문화원의 선순환과 경기지역학의 미래 — 경기·인천 공동 회차 · 경기문화재단 정책실 회의실(9층)</td></tr>
+          <tr><td class="k">포럼</td><td>2026. 9. 29.(화) 14:00</td><td>시민지역학과 지역문화 생태계 · 장소 추후 공지</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="star">
+      <span class="tag">다음으로 넘긴 것</span>
+      <ul class="clean">
+        <li>대가를 주면 예산만큼만 참여시키게 된다는 반문 — 포럼에서 정리</li>
+        <li>문화원이 하는 일 중 어디까지가 지역학인가 — 해설사·기획자·비즈니스 (04)</li>
+        <li>구술 동의·초상권·사후 철회 절차를 어디까지 표준화할 것인가</li>
+        <li>드론·3D 기록의 법률 절차와 장비 예산, 공공서버 요구</li>
+        <li>청소년을 지역학의 다음 주체로 — 학익고 동아리 · 이천 라디오 · 용인 Y-로드</li>
+        <li>애향심은 낮은데 정주의식은 높다 — 그 정주의식을 지역으로 어떻게 돌리나</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div><strong>기록</strong> 경기도문화원연합회 · 2026 경기지역학 네트워크 「지역학 길찾기 4+1」</div>
+  <div style="margin-top:6px"><strong>근거</strong> 자료집(발표문 1편 · 발표 슬라이드 42장 · 토론문 4편) 및 당일 발언</div>
+  <div style="margin-top:10px;font-size:12px">
+    ※ <strong>연합회·경기학회 확정 전 검토본입니다.</strong> 발언 요지는 정리 과정에서 뜻이 달라졌을 수 있습니다 —
+    사실과 다른 부분을 알려 주시면 그대로 고치겠습니다 · 인용하실 문장은 <strong>자료집 원문</strong>에서 가져와 주십시오
+  </div>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  document.querySelectorAll('[data-sec]').forEach(function(h){
+    h.addEventListener('click', function(){
+      var bodies = h.parentElement.querySelectorAll(':scope > .sbody');
+      var b = bodies[bodies.length-1];
+      if(!b) return;
+      b.classList.toggle('hidden');
+      h.classList.toggle('closed');
+    });
+  });
+  var fb = document.getElementById('focusBtn');
+  try{ if(localStorage.getItem('colo-focus')==='1'){ document.body.classList.add('focus'); fb.classList.add('active'); } }catch(e){}
+  fb.addEventListener('click', function(){
+    var on = document.body.classList.toggle('focus');
+    fb.classList.toggle('active', on);
+    try{ localStorage.setItem('colo-focus', on?'1':'0'); }catch(e){}
+  });
+  var tb = document.getElementById('themeBtn');
+  try{ var saved = localStorage.getItem('colo-theme'); if(saved) document.documentElement.setAttribute('data-theme', saved); }catch(e){}
+  tb.addEventListener('click', function(){
+    var cur = document.documentElement.getAttribute('data-theme');
+    var isDark = cur ? cur==='dark' : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    var next = isDark ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try{ localStorage.setItem('colo-theme', next); }catch(e){}
+  });
+  var secs = Array.prototype.slice.call(document.querySelectorAll('section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#nav a'));
+  var bar = document.getElementById('prog-bar');
+  function onScroll(){
+    var y = window.scrollY + 100, cur = secs[0];
+    secs.forEach(function(s){ if(s.offsetTop <= y) cur = s; });
+    links.forEach(function(a){ a.classList.toggle('on', a.getAttribute('href') === '#'+cur.id); });
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = h>0 ? (window.scrollY/h*100)+'%' : '0%';
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+})();
+</script>
+</body>
+</html>
